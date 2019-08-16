@@ -1,10 +1,12 @@
-const greeting = 'Hello World';
-console.log(greeting);
+import { http } from "./http";
+import { ui } from "./ui";
 
-const getData = async (url) => {
-  const response = await fetch(url);
-  const result = await response.json();
-  console.log(result);
-};
+// Get comment on DOM load
+document.addEventListener("DOMContentLoaded", getComments);
 
-getData('https://jsonplaceholder.typicode.com/posts');
+function getComments() {
+  http
+    .get("http://localhost:3000/comments")
+    .then(data => ui.showComments(data))
+    .catch(err => console.log(err));
+}
