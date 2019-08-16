@@ -1,14 +1,9 @@
 {
   "comments": [
     {
-      "id": 1,
       "title": "Comment One",
-      "body": "This is comment one"
-    },
-    {
-      "id": 2,
-      "title": "Comment Two",
-      "body": "This is comment two"
+      "body": "This is comment one",
+      "id": 1
     },
     {
       "title": "Comment Three",

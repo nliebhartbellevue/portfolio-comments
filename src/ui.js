@@ -55,6 +55,7 @@ class UI {
     }, 3000);
   }
 
+  // Clear alert
   clearAlert() {
     const currentAlert = document.querySelector(".alert");
 
@@ -63,9 +64,55 @@ class UI {
     }
   }
 
+  // Clear form
   clearFields() {
     this.titleInput.value = "";
     this.bodyInput.value = "";
+  }
+
+  // Fill form to edit
+  fillForm(data) {
+    this.titleInput.value = data.title;
+    this.bodyInput.value = data.body;
+    this.idInput.value = data.id;
+
+    this.changeFormState("edit");
+  }
+
+  // Clear ID input
+  clearIdInput() {
+    this.idInput.value = "";
+  }
+
+  // Change form state
+  changeFormState(type) {
+    if (type === "edit") {
+      this.commentSubmit.textContent = "Update Comment";
+      this.commentSubmit.className = "comment-submit btn btn-info btn-block";
+
+      // Create Cancel button
+      const button = document.createElement("button");
+      button.className = "comment-cancel btn btn-warning btn-block";
+      button.appendChild(document.createTextNode("Cancel"));
+
+      // Get parent
+      const cardForm = document.querySelector(".card-form");
+      // Get element to insert before
+      const formEnd = document.querySelector(".form-end");
+      // Insert Cancel button
+      cardForm.insertBefore(button, formEnd);
+    } else {
+      this.commentSubmit.textContent = "Post";
+      this.commentSubmit.className = "comment-submit btn btn-primary btn-block";
+      // Remove cancel button if it is there
+      if (document.querySelector(".comment-cancel")) {
+        document.querySelector(".comment-cancel").remove();
+      }
+      // Clear ID from hidden field
+      this.clearIdInput();
+      // Clear text
+      this.clearFields();
+    }
   }
 }
 
