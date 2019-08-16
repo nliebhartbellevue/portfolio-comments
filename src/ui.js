@@ -32,6 +32,41 @@ class UI {
 
     this.comment.innerHTML = output;
   }
+
+  showAlert(message, className) {
+    this.clearAlert();
+
+    // Create alert div
+    const div = document.createElement("div");
+    // Add classes
+    div.className = className;
+    // Add text
+    div.appendChild(document.createTextNode(message));
+    // Get parent
+    const container = document.querySelector(".commentsContainer");
+    // Get comments
+    const comments = document.querySelector("#comments");
+    // Insert alert div
+    container.insertBefore(div, comments);
+
+    // Timeout
+    setTimeout(() => {
+      this.clearAlert();
+    }, 3000);
+  }
+
+  clearAlert() {
+    const currentAlert = document.querySelector(".alert");
+
+    if (currentAlert) {
+      currentAlert.remove();
+    }
+  }
+
+  clearFields() {
+    this.titleInput.value = "";
+    this.bodyInput.value = "";
+  }
 }
 
 export const ui = new UI();
